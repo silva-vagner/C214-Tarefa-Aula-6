@@ -31,6 +31,7 @@ const Movie = {
 
     async update(data) {
         try {
+            console.log(resposta, response)
             const validation = validate.validate(data, Constraints.update);
             if (validation) {
                 const response = Constants.ErrorValidation;
@@ -40,7 +41,7 @@ const Movie = {
 
             data.nome = data.nome.toLowerCase();
             const response = await MovieRepository.update(data);
-
+            console.log(resposta, response)
             if (response === []) {
                 const result = Constants.ErrorNotFound;
                 return result;
@@ -68,7 +69,7 @@ const Movie = {
         }
     },
 
-    async listByNome(data) {
+    async listByName(data) {
         try {
             const validation = validate.validate(data, Constraints.get);
             if (validation) {
@@ -77,8 +78,11 @@ const Movie = {
                 return response;
             }
             data.nome = data.nome.toLowerCase();
-            const response = await MovieRepository.getByNome(data);
-
+            const response = await MovieRepository.listByName(data);
+            if(response == null){
+                const response = Constants.ErrorNotFound;
+                return response;
+            }
             return response;
         } catch (error) {
             return error;

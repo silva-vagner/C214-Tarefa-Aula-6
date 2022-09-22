@@ -43,6 +43,15 @@ const get = {
     },
 };
 
+const getAll = {
+    nome: {
+        presence: {
+            allowEmpty: true,
+        },
+        type: 'string',
+    },
+};
+
 const deleteBy = {
     nome: {
         presence: {

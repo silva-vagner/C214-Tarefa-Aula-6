@@ -35,11 +35,13 @@ const MovieRepository = {
         }
     },
 
-    async getByNome(data) {
+    async listByName(data) {
         try {
+            console.log('teste')
             const result = await MovieModel.findOne({ nome: data.nome }).exec();
             return result;
         } catch (e) {
+            console.log(e)
             return e;
         }
     },

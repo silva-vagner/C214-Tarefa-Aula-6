@@ -20,7 +20,8 @@ module.exports = (app) => {
         res.json(response);
     });
     app.get(`${route}/listMovie`, async (req, res) => {
-        const response = await Movie.listByNome(req.body);
+        const response = await Movie.listByName(req.body);
+        console.log(res.statusCode)
         res.status(Utils.responseStatus(response.name));
         res.json(response);
     });
